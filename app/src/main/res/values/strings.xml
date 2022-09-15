@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">LookForStudies</string>
+    <string name="cornergraphic">cornergraphic</string>
+    <string name="logo">logo</string>
+    <string name="cornerlayout">cornerLayout</string>
+    <string name="welcometext">welcomeText</string>
+    <string name="podaj_imie">Podaj imie</string>
+    <string name="podajImie">Podaj imie</string>
+    <string name="podajNazwisko">Podaj nazwisko</string>
+    <string name="podaj_email">Podaj email</string>
+    <string name="podajHaslo">Podaj hasło</string>
+    <string name="powtorzHaslo">Powtórz hasło</string>
+    <string name="zarejestrujSie">Zarejestruj się</string>
+    <string name="zalogujSie">Zaloguj się</string>
+    <string name="posiadaszJuzKonto">Posiadasz już konto?</string>
+    <string name="welcomeagaintext">welcomeagaintext</string>
+    <string name="nie_posiadasz_konta">Nie posiadasz konta?</string>
+    <string name="forgotPassword">Zapomniałem hasła</string>
+    <string name="upperbg">upperBg</string>
+</resources>

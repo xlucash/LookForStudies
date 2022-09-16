@@ -1,28 +1,18 @@
 package studies.lucas.lookforstudies;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
@@ -31,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button registerUser;
     private TextView loginUser;
     private EditText editTextName, editTextSurname, editTextEmail, editTextPassword, editTextPasswordRepeat;
-    private FirebaseAuth mAuth;
+    private DBHelper registerDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +29,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_main);
-
-        mAuth = FirebaseAuth.getInstance();
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Users");
-
-        myRef.setValue("Hello, World!");
-
 
         registerUser = (Button) findViewById(R.id.registerBtn);
         registerUser.setOnClickListener(this);
@@ -59,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextEmail = (EditText) findViewById(R.id.registerEmail);
         editTextPassword = (EditText) findViewById(R.id.registerPassword);
         editTextPasswordRepeat = (EditText) findViewById(R.id.registerPasswordRepeat);
+
+        registerDB = new DBHelper(this);
 
 
     }
@@ -136,39 +120,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+        User user = new User(name, surname, email, password);
+        Boolean usercheckResult = registerDB.checkuser(email);
+        if(!usercheckResult)
+        {
+            Boolean regResult = registerDB.insertData(user);
+            if(regResult){
+                Toast.makeText(MainActivity.this, "Konto utworzone pomyślnie!", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), LoginUser.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(MainActivity.this, "Nie udało się utworzyć konta!", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(MainActivity.this, "Użytkownik o podanym mailu już istnieje!", Toast.LENGTH_LONG).show();
+        }
 
-        User user = new User(name, surname, email);
-
-        System.out.println("Register user");
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        System.out.println("Task started");
-                        if(task.isSuccessful()){
-                            System.out.println("Task successsful");
-                            FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            System.out.println("ACCOUNT CREATED");
-                                            if(task.isSuccessful()){
-                                                Toast.makeText(MainActivity.this, "Konto zostało utworzone pomyślnie!", Toast.LENGTH_LONG).show();
-                                                System.out.println("TASK SUCCEED");
-
-                                                // redirect to login
-
-                                            } else {
-                                                Toast.makeText(MainActivity.this, "Nie udało się utworzyć konta!", Toast.LENGTH_LONG).show();
-                                                System.out.println("TASK FAILED");
-                                            }
-                                        }
-                                    });
-                        } else {
-                            Toast.makeText(MainActivity.this, "Wystąpił problem z utworzeniem konta!", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
     }
 }

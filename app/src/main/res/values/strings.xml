@@ -17,4 +17,5 @@
     <string name="nie_posiadasz_konta">Nie posiadasz konta?</string>
     <string name="forgotPassword">Zapomniałem hasła</string>
     <string name="upperbg">upperBg</string>
+    <string name="defaultavatar">defaultAvatar</string>
 </resources>

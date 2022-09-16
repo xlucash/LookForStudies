@@ -15,9 +15,27 @@
         android:contentDescription="@string/upperbg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/rectangle_24"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/defaultavatar"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.683"
+        app:srcCompat="@drawable/useravatar"
         tools:ignore="ImageContrastCheck" />
 
     <ImageView
@@ -34,4 +52,22 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/profile_corner"
         tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/welcomeTextView"
+        android:layout_width="175dp"
+        android:layout_height="36dp"
+        android:autoText="false"
+        android:lineSpacingExtra="10sp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        tools:ignore="TextContrastCheck" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

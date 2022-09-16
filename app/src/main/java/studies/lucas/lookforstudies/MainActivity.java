@@ -122,18 +122,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         User user = new User(name, surname, email, password);
         Boolean usercheckResult = registerDB.checkuser(email);
-        if(!usercheckResult)
-        {
-            Boolean regResult = registerDB.insertData(user);
-            if(regResult){
-                Toast.makeText(MainActivity.this, "Konto utworzone pomyślnie!", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext(), LoginUser.class);
-                startActivity(intent);
-            } else {
-                Toast.makeText(MainActivity.this, "Nie udało się utworzyć konta!", Toast.LENGTH_LONG).show();
-            }
-        } else {
+        if(usercheckResult) {
             Toast.makeText(MainActivity.this, "Użytkownik o podanym mailu już istnieje!", Toast.LENGTH_LONG).show();
+        }
+
+        Boolean registerResult = registerDB.insertData(user);
+        if(!registerResult){
+            Toast.makeText(MainActivity.this, "Nie udało się utworzyć konta!", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(MainActivity.this, "Konto utworzone pomyślnie!", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), LoginUser.class);
+            startActivity(intent);
         }
 
     }

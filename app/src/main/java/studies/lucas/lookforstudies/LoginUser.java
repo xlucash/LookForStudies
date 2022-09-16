@@ -74,13 +74,13 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
             return;
         }
 
-        Boolean userValid = loginDB.checkEmailPassword(userEmail,userPassword);
-        if(userValid) {
+        Boolean userValidation = loginDB.checkEmailPassword(userEmail,userPassword);
+        if(!userValidation) {
+            Toast.makeText(LoginUser.this, "Nieprawidłowe dane!", Toast.LENGTH_LONG).show();
+        } else {
             Intent intent = new Intent(getApplicationContext(), UserProfile.class);
             intent.putExtra("currentUserMail", userEmail);
             startActivity(intent);
-        } else {
-            Toast.makeText(LoginUser.this, "Nieprawidłowe dane!", Toast.LENGTH_LONG).show();
         }
 
     }

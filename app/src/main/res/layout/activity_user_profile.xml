@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F6F6F6"
-    tools:context=".UserProfile">
+    tools:context=".UserHome">
 
     <ImageView
         android:id="@+id/imageView5"
@@ -69,5 +69,92 @@
         app:layout_constraintStart_toStartOf="@+id/imageView5"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         tools:ignore="TextContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/goToProfileBtn"
+        android:layout_width="374dp"
+        android:layout_height="70dp"
+        android:background="#00000000"
+        android:contentDescription="profileBgBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:layout_constraintVertical_bias="0.043"
+        app:srcCompat="@drawable/profile_image"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/searchUniversityBtn"
+        android:layout_width="374dp"
+        android:layout_height="70dp"
+        android:background="#00000000"
+        android:contentDescription="searchBgBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goToProfileBtn"
+        app:srcCompat="@drawable/search_image"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/notificationsBtn"
+        android:layout_width="374dp"
+        android:layout_height="70dp"
+        android:background="#00000000"
+        android:contentDescription="notificationsBgBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchUniversityBtn"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/notification_image"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/settingsBtn"
+        android:layout_width="374dp"
+        android:layout_height="70dp"
+        android:background="#00000000"
+        android:contentDescription="settingsBgBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notificationsBtn"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/settings_image"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/questionTextView"
+        android:layout_width="115dp"
+        android:layout_height="30dp"
+        android:text="Na dziś koniec?"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.344"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsBtn"
+        app:layout_constraintVertical_bias="0.061" />
+
+    <TextView
+        android:id="@+id/logOutTextView"
+        android:layout_width="115dp"
+        android:layout_height="29dp"
+        android:text="Wyloguj się"
+        android:textColor="#4D7E64"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/questionTextView"
+        app:layout_constraintTop_toBottomOf="@+id/settingsBtn"
+        app:layout_constraintVertical_bias="0.061" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

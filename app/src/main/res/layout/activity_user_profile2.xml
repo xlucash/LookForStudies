@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F6F6"
+    tools:context=".UserProfile">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/cornergraphic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.001"
+        app:srcCompat="@drawable/corner_shape"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/profile_picture"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.139"
+        app:srcCompat="@drawable/useravatar" />
+
+    <TextView
+        android:id="@+id/currentUserProfile"
+        android:layout_width="341dp"
+        android:layout_height="90dp"
+        android:background="@drawable/profile_user"
+        android:gravity="center_vertical|center_horizontal"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/hobbyBtn"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="#00000000"
+        android:contentDescription="hobbyBtnImage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.187"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentUserProfile"
+        app:layout_constraintVertical_bias="0.016"
+        app:srcCompat="@drawable/hobby"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/resultsBtn"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="#00000000"
+        android:contentDescription="resultsBtnImage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.193"
+        app:layout_constraintStart_toEndOf="@+id/hobbyBtn"
+        app:layout_constraintTop_toBottomOf="@+id/currentUserProfile"
+        app:layout_constraintVertical_bias="0.016"
+        app:srcCompat="@drawable/results"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/universityBtn"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="#00000000"
+        android:contentDescription="universityBtnImage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.187"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hobbyBtn"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/additional"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/localizationBtn"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="#00000000"
+        android:contentDescription="localizationBtnImage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.193"
+        app:layout_constraintStart_toEndOf="@+id/universityBtn"
+        app:layout_constraintTop_toBottomOf="@+id/resultsBtn"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/localization"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/goBackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-12dp"
+        android:layout_marginBottom="-10dp"
+        android:background="#00000000"
+        android:contentDescription="goBackBtnImage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentUserProfile"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/back_button"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+</androidx.constraintlayout.widget.ConstraintLayout>

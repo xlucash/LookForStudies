@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F6F6F6"
-    tools:context=".MainActivity">
+    tools:context=".RegisterUser">
 
     <ImageView
         android:id="@+id/cornerBg"
@@ -215,7 +215,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="100dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/zalogujSie"
         android:textColor="#50C2C9"
         android:textStyle="bold"
@@ -223,23 +223,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/haveAcc"
         app:layout_constraintTop_toBottomOf="@+id/registerBtn"
-        app:layout_constraintVertical_bias="0.333"
+        app:layout_constraintVertical_bias="0.327"
         tools:ignore="TextContrastCheck" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="89dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="337dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/registerEmail"
-        app:layout_constraintTop_toBottomOf="@+id/registerSurname"
-        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,7 +49,7 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.register:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, RegisterUser.class));
                 break;
             case R.id.loginBtn:
                 loginUser();
@@ -78,7 +78,7 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
         if(!userValidation) {
             Toast.makeText(LoginUser.this, "Nieprawidłowe dane!", Toast.LENGTH_LONG).show();
         } else {
-            Intent intent = new Intent(getApplicationContext(), UserProfile.class);
+            Intent intent = new Intent(getApplicationContext(), UserHome.class);
             intent.putExtra("currentUserMail", userEmail);
             startActivity(intent);
         }

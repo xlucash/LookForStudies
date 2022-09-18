@@ -18,4 +18,5 @@
     <string name="forgotPassword">Zapomniałem hasła</string>
     <string name="upperbg">upperBg</string>
     <string name="defaultavatar">defaultAvatar</string>
+    <string name="profile_picture">profile_picture</string>
 </resources>

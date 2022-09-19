@@ -78,7 +78,7 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
         if(!userValidation) {
             Toast.makeText(LoginUser.this, "Nieprawidłowe dane!", Toast.LENGTH_LONG).show();
         } else {
-            Intent intent = new Intent(getApplicationContext(), UserHome.class);
+            Intent intent = new Intent(LoginUser.this, UserHome.class);
             intent.putExtra("currentUserMail", userEmail);
             startActivity(intent);
         }

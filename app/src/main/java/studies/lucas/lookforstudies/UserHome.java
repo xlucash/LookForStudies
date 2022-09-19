@@ -13,12 +13,13 @@ import android.widget.TextView;
 
 import java.util.Objects;
 
-public class UserHome extends AppCompatActivity implements View.OnClickListener {
+public class UserHome extends AppCompatActivity {
 
     private TextView welcomeText, logOutBtn;
     private ImageButton goToProfileBtn;
     private DBHelper usersDB;
     private String uid;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,14 +27,27 @@ public class UserHome extends AppCompatActivity implements View.OnClickListener 
         Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_user_profile);
 
-        goToProfileBtn = (ImageButton) findViewById(R.id.goToProfileBtn);
-        goToProfileBtn.setOnClickListener(this);
-        logOutBtn = (TextView) findViewById(R.id.logOutTextView);
-        logOutBtn.setOnClickListener(this);
-
         String currentUser = getIntent().getStringExtra("currentUserMail");
         usersDB = new DBHelper(this);
         uid = String.valueOf((usersDB.getUid(currentUser)));
+
+        goToProfileBtn = (ImageButton) findViewById(R.id.goToProfileBtn);
+        goToProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent profile = new Intent(UserHome.this, UserProfile.class);
+                profile.putExtra("currentUserUid", uid);
+                startActivity(profile);
+            }
+        });
+        logOutBtn = (TextView) findViewById(R.id.logOutTextView);
+        logOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent logOut = new Intent(UserHome.this, LoginUser.class);
+                startActivity(logOut);
+            }
+        });
 
         String loggedName, loggedSurname;
         loggedName = usersDB.getName(uid);
@@ -44,17 +58,4 @@ public class UserHome extends AppCompatActivity implements View.OnClickListener 
 
     }
 
-    @SuppressLint("NonConstantResourceId")
-    @Override
-    public void onClick(View view) {
-        switch(view.getId()) {
-            case R.id.logOutTextView:
-                Intent logout = new Intent(UserHome.this, LoginUser.class);
-                startActivity(logout);
-            case R.id.goToProfileBtn:
-                Intent profile = new Intent(UserHome.this, UserProfile.class);
-                profile.putExtra("currentUserUid", uid);
-                startActivity(profile);
-        }
-    }
 }

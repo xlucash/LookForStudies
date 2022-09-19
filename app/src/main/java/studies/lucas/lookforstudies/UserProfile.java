@@ -2,6 +2,7 @@ package studies.lucas.lookforstudies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,13 +13,14 @@ import android.widget.TextView;
 
 import java.util.Objects;
 
-public class UserProfile extends AppCompatActivity implements View.OnClickListener {
+public class UserProfile extends AppCompatActivity {
 
     private ImageButton hobbyBtn, resultsBtn, univeristyBtn, localizationBtn, goBackBtn;
     private TextView currentUser;
     private String uid, name, surname;
     private DBHelper usersDB;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,18 +37,26 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         currentUser.setText(name +" "+surname);
 
         goBackBtn = (ImageButton) findViewById(R.id.goBackBtn);
-        goBackBtn.setOnClickListener(this);
-
-
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.goBackBtn:
-                Intent goHome = new Intent(getApplicationContext(), UserHome.class);
+        goBackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goHome = new Intent(UserProfile.this, UserHome.class);
                 startActivity(goHome);
-        }
+            }
+        });
+
+        resultsBtn = (ImageButton) findViewById(R.id.resultsBtn);
+        resultsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToResults = new Intent(UserProfile.this, ExamResults.class);
+                goToResults.putExtra("currentUserUid", uid);
+                startActivity(goToResults);
+            }
+        });
+
 
     }
+
+
 }

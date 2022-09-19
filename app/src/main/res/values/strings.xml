@@ -19,4 +19,17 @@
     <string name="upperbg">upperBg</string>
     <string name="defaultavatar">defaultAvatar</string>
     <string name="profile_picture">profile_picture</string>
+
+    <string-array name="subjects">
+        <item> </item>
+        <item>Matematyka</item>
+        <item>Język polski</item>
+        <item>Język angielski</item>
+        <item>Język niemiecki</item>
+        <item>Informatyka</item>
+        <item>Fizyka</item>
+        <item>Geografia</item>
+        <item>Biologia</item>
+        <item>Chemia</item>
+    </string-array>
 </resources>

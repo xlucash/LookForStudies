@@ -55,7 +55,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView9"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/math" />
+        app:srcCompat="@drawable/math2" />
 
     <ImageView
         android:id="@+id/imageView11"
@@ -67,7 +67,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView10"
         app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/polish" />
+        app:srcCompat="@drawable/polish2" />
 
     <ImageView
         android:id="@+id/imageView12"
@@ -79,7 +79,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView11"
         app:layout_constraintVertical_bias="0.031"
-        app:srcCompat="@drawable/english" />
+        app:srcCompat="@drawable/english2" />
 
     <ImageView
         android:id="@+id/imageView13"
@@ -114,6 +114,7 @@
         android:layout_height="62dp"
         android:background="@drawable/result_percentage"
         android:contentDescription="percentageResultMath"
+        android:fontFamily="@font/poppins"
         android:ems="10"
         android:gravity="center_horizontal|center_vertical"
         android:inputType="text"
@@ -146,6 +147,7 @@
         android:layout_height="62dp"
         android:background="@drawable/result_percentage"
         android:ems="10"
+        android:fontFamily="@font/poppins"
         android:gravity="center_horizontal|center_vertical"
         android:inputType="text"
         android:textSize="14sp"
@@ -177,6 +179,7 @@
         android:layout_height="62dp"
         android:background="@drawable/result_percentage"
         android:ems="10"
+        android:fontFamily="@font/poppins"
         android:gravity="center_horizontal|center_vertical"
         android:inputType="text"
         android:textSize="14sp"
@@ -209,6 +212,7 @@
         android:background="@drawable/advanced_image"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
+        android:fontFamily="@font/poppins"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.198"
@@ -221,6 +225,7 @@
         android:id="@+id/autoCompleteAdvancedTwo"
         android:layout_width="235dp"
         android:layout_height="54dp"
+        android:fontFamily="@font/poppins"
         android:background="@drawable/advanced_image"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
@@ -239,6 +244,7 @@
         android:background="@drawable/advanced_image"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
+        android:fontFamily="@font/poppins"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.193"
@@ -256,6 +262,7 @@
         android:gravity="center_horizontal|center_vertical"
         android:inputType="text"
         android:textSize="14sp"
+        android:fontFamily="@font/poppins"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -273,6 +280,7 @@
         android:gravity="center_horizontal|center_vertical"
         android:inputType="text"
         android:textSize="14sp"
+        android:fontFamily="@font/poppins"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -290,6 +298,7 @@
         android:gravity="center_horizontal|center_vertical"
         android:inputType="text"
         android:textSize="14sp"
+        android:fontFamily="@font/poppins"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

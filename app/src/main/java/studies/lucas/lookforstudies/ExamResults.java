@@ -99,6 +99,10 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
         advancedTwoSubject.setAdapter(new ArrayAdapter<>(ExamResults.this, android.R.layout.simple_list_item_1, subjects));
 
 
+        confirmAdvancedThreeBtn = (ImageButton) findViewById(R.id.confirmAdvancedThreeBtn);
+        confirmAdvancedThreeBtn.setVisibility(View.INVISIBLE);
+
+
         advancedThreePercentage = (EditText) findViewById(R.id.editTextAdvancedResultThree);
         advancedThreePercentage.setFocusable(false);
         advancedThreePercentage.setFocusableInTouchMode(false);

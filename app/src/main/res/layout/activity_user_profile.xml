@@ -59,6 +59,7 @@
         android:layout_height="36dp"
         android:autoText="false"
         android:lineSpacingExtra="10sp"
+        android:fontFamily="@font/poppins"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
@@ -130,23 +131,25 @@
 
     <TextView
         android:id="@+id/questionTextView"
-        android:layout_width="115dp"
+        android:layout_width="141dp"
         android:layout_height="30dp"
+        android:fontFamily="@font/poppins"
         android:text="Na dziś koniec?"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.344"
+        app:layout_constraintHorizontal_bias="0.292"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingsBtn"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintVertical_bias="0.044" />
 
     <TextView
         android:id="@+id/logOutTextView"
         android:layout_width="115dp"
         android:layout_height="29dp"
         android:text="Wyloguj się"
+        android:fontFamily="@font/poppins"
         android:textColor="#4D7E64"
         android:textSize="16sp"
         android:textStyle="bold"

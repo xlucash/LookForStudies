@@ -2,6 +2,7 @@ package studies.lucas.lookforstudies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -120,6 +121,7 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
         goBackBtn.setOnClickListener(this);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch(view.getId()) {
@@ -202,7 +204,7 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
                     @Override
                     public void onClick(View view) {
                         String userSubject = advancedOneSubject.getText().toString().trim();
-                        String subject = getSubject(userSubject);
+                        String subject = SubjectHelper.getSubject(userSubject);
                         String result = advancedOnePercentage.getText().toString().trim();
                         advancedOnePercentage.setFocusable(false);
                         advancedOnePercentage.setFocusableInTouchMode(false);
@@ -226,7 +228,7 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
                     @Override
                     public void onClick(View view) {
                         String userSubject = advancedTwoSubject.getText().toString().trim();
-                        String subject = getSubject(userSubject);
+                        String subject = SubjectHelper.getSubject(userSubject);
                         String result = advancedTwoPercentage.getText().toString().trim();
                         advancedTwoPercentage.setFocusable(false);
                         advancedTwoPercentage.setFocusableInTouchMode(false);
@@ -250,7 +252,7 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
                     @Override
                     public void onClick(View view) {
                         String userSubject = advancedThreeSubject.getText().toString().trim();
-                        String subject = getSubject(userSubject);
+                        String subject = SubjectHelper.getSubject(userSubject);
                         String result = advancedThreePercentage.getText().toString().trim();
                         advancedThreePercentage.setFocusable(false);
                         advancedThreePercentage.setFocusableInTouchMode(false);
@@ -266,43 +268,6 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
                 });
                 break;
         }
-    }
-
-    // "Matematyka","Jezyk polski","Jezyk angielski","Jezyk niemiecki","Informatyka","Fizyka","Biologia","Chemia","Geografia","Historia"
-    public String getSubject(String subject) {
-        String wantedSubject;
-        switch(subject) {
-            case "Matematyka":
-                wantedSubject="ADVANCEDMATH";
-                break;
-            case "Jezyk polski":
-                wantedSubject="ADVANCEDPOLISH";
-                break;
-            case "Jezyk niemiecki":
-                wantedSubject="ADVANCEDGERMAN";
-                break;
-            case "Informatyka":
-                wantedSubject="ADVANCEDINFORMATICS";
-                break;
-            case "Fizyka":
-                wantedSubject="ADVANCEDPHYSICS";
-                break;
-            case "Biologia":
-                wantedSubject="ADVANCEDBIOLOGY";
-                break;
-            case "Chemia":
-                wantedSubject="ADVANCEDCHEMISTRY";
-                break;
-            case "Geografia":
-                wantedSubject="ADVANCEDGEOGRAPHY";
-                break;
-            case "Historia":
-                wantedSubject="ADVANCEDHISTORY";
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid subject: " + subject);
-        }
-        return wantedSubject;
     }
 
 }

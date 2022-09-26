@@ -38,11 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
         long result = sqLiteDatabase.insert("users",null,contentValues);
 
 
-        if(result == -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return result != -1;
     }
 
     public void insertResultsData(String subject, String examResult, String uid) {
@@ -67,12 +63,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("select * from users where email = ?", new String[] {email});
 
-        if(cursor.getCount()>0)
-        {
-            return true;
-        } else{
-            return false;
-        }
+        return cursor.getCount() > 0;
 
     }
 
@@ -80,11 +71,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("select * from users where email = ? and password = ?", new String[] {email, password});
 
-        if(cursor.getCount()>0){
-            return true;
-        } else {
-            return false;
-        }
+        return cursor.getCount() > 0;
     }
 
     public int getUid (String email) {
@@ -105,11 +92,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public Boolean checkResultsInDB (String subject, String uid) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("select * from examresults where subject = ? and uid = ?", new String[] {subject, uid});
-        if(cursor.getCount()>0){
-            return true;
-        } else {
-            return false;
-        }
+        return cursor.getCount() > 0;
     }
 
     public String getPercentage (String subject, String uid) {

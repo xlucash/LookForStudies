@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.Objects;
 
-public class UserHome extends AppCompatActivity {
+public class UserHome extends AppCompatActivity implements View.OnClickListener {
 
     private TextView welcomeText, logOutBtn;
     private ImageButton goToProfileBtn;
@@ -32,22 +32,9 @@ public class UserHome extends AppCompatActivity {
         uid = String.valueOf((usersDB.getUid(currentUser)));
 
         goToProfileBtn = (ImageButton) findViewById(R.id.goToProfileBtn);
-        goToProfileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent profile = new Intent(UserHome.this, UserProfile.class);
-                profile.putExtra("currentUserUid", uid);
-                startActivity(profile);
-            }
-        });
+        goToProfileBtn.setOnClickListener(this);
         logOutBtn = (TextView) findViewById(R.id.logOutTextView);
-        logOutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent logOut = new Intent(UserHome.this, LoginUser.class);
-                startActivity(logOut);
-            }
-        });
+        logOutBtn.setOnClickListener(this);
 
         String loggedName, loggedSurname;
         loggedName = usersDB.getName(uid);
@@ -58,4 +45,19 @@ public class UserHome extends AppCompatActivity {
 
     }
 
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()) {
+            case R.id.goToProfileBtn:
+                Intent profile = new Intent(UserHome.this, UserProfile.class);
+                profile.putExtra("currentUserUid", uid);
+                startActivity(profile);
+                break;
+            case R.id.logOutTextView:
+                Intent logOut = new Intent(UserHome.this, LoginUser.class);
+                startActivity(logOut);
+                break;
+        }
+    }
 }

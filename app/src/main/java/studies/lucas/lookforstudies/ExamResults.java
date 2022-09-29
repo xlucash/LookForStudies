@@ -22,6 +22,7 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
     private String uid;
     private DBHelper resultsDB;
     private String[] subjects;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,24 +55,6 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
         englishPercentage = (EditText) findViewById(R.id.editTextEnglishResult);
         englishPercentage.setFocusable(false);
         englishPercentage.setFocusableInTouchMode(false);
-
-        if(!resultsDB.checkResultsInDB("MATH",uid)) {
-            mathPercentage.setText("");
-        } else {
-            mathPercentage.setText(resultsDB.getPercentage("MATH", uid));
-        }
-
-        if(!resultsDB.checkResultsInDB("POLISH",uid)) {
-            polishPercentage.setText("");
-        } else {
-            polishPercentage.setText(resultsDB.getPercentage("POLISH", uid));
-        }
-
-        if(!resultsDB.checkResultsInDB("ENGLISH",uid)) {
-            englishPercentage.setText("");
-        } else {
-            englishPercentage.setText(resultsDB.getPercentage("ENGLISH", uid));
-        }
 
 
         mathPercentage.setOnClickListener(this);
@@ -119,6 +102,38 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
 
         goBackBtn = (ImageButton) findViewById(R.id.goBackToProfile);
         goBackBtn.setOnClickListener(this);
+
+        DBHelper.checkIfDataExistBasicResults(resultsDB, uid, mathPercentage, polishPercentage, englishPercentage);
+
+        if(!resultsDB.checkIfAdvancedResultsInDB(uid)) {
+            advancedOnePercentage.setText("");
+            advancedTwoPercentage.setText("");
+            advancedThreePercentage.setText("");
+        } else {
+            String searchSubject;
+            String convertedSubject;
+
+            searchSubject = resultsDB.getAdvancedSubject(uid, "0");
+            convertedSubject = SubjectHelper.getSubjectReverse(searchSubject);
+            advancedOneSubject.setText(convertedSubject);
+            advancedOnePercentage.setText(resultsDB.getPercentage(searchSubject, uid)+"%");
+
+            // check if there is more than 1 advanced subject assigned to the uid
+            if (resultsDB.checkCountAdvancedResultsInDB(uid)>1) {
+                searchSubject = resultsDB.getAdvancedSubject(uid, "1");
+                convertedSubject = SubjectHelper.getSubjectReverse(searchSubject);
+                advancedTwoSubject.setText(convertedSubject);
+                advancedTwoPercentage.setText(resultsDB.getPercentage(searchSubject, uid) + "%");
+            }
+
+            // check if there is more than 2 advanced subjects assigned to the uid
+            if(resultsDB.checkCountAdvancedResultsInDB(uid)>2) {
+                searchSubject = resultsDB.getAdvancedSubject(uid, "2");
+                convertedSubject = SubjectHelper.getSubjectReverse(searchSubject);
+                advancedThreeSubject.setText(convertedSubject);
+                advancedThreePercentage.setText(resultsDB.getPercentage(searchSubject, uid) + "%");
+            }
+        }
     }
 
     @SuppressLint("NonConstantResourceId")

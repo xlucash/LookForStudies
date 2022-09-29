@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.EditText;
 
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {
@@ -95,9 +96,46 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor.getCount() > 0;
     }
 
+    public Boolean checkIfAdvancedResultsInDB (String uid) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("select * from examresults where subject like 'ADVANCED%' and uid = ?", new String[] {uid});
+        return cursor.getCount() > 0;
+    }
+
+    public int checkCountAdvancedResultsInDB (String uid) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("select * from examresults where subject like 'ADVANCED%' and uid = ?", new String[] {uid});
+        return cursor.getCount();
+    }
+
     public String getPercentage (String subject, String uid) {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         return DatabaseUtils.stringForQuery(sqLiteDatabase, "select result from examresults where subject = ? AND uid = ?", new String[] {subject, uid});
+    }
+
+    public String getAdvancedSubject (String uid, String offset) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        return DatabaseUtils.stringForQuery(sqLiteDatabase, "select subject from examresults where subject like 'ADVANCED%' AND uid = ? LIMIT 1 OFFSET ?", new String[] {uid,offset});
+    }
+
+    public static void checkIfDataExistBasicResults(DBHelper resultsDB, String uid, EditText mathPercentage, EditText polishPercentage, EditText englishPercentage) {
+        if(!resultsDB.checkResultsInDB("MATH",uid)) {
+            mathPercentage.setText("");
+        } else {
+            mathPercentage.setText(resultsDB.getPercentage("MATH", uid)+"%");
+        }
+
+            if(!resultsDB.checkResultsInDB("POLISH",uid)) {
+            polishPercentage.setText("");
+        } else {
+            polishPercentage.setText(resultsDB.getPercentage("POLISH", uid)+"%");
+        }
+
+            if(!resultsDB.checkResultsInDB("ENGLISH",uid)) {
+            englishPercentage.setText("");
+        } else {
+            englishPercentage.setText(resultsDB.getPercentage("ENGLISH", uid)+"%");
+        }
     }
 
 }

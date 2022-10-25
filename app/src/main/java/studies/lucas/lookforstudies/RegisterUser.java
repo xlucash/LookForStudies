@@ -18,9 +18,9 @@ import java.util.Objects;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener {
 
-    private Button registerUser;
-    private TextView loginUser;
-    private EditText editTextName, editTextSurname, editTextEmail, editTextPassword, editTextPasswordRepeat;
+    private Button registerUserBtn;
+    private TextView loginUserTextView;
+    private EditText nameEditText, surnameEditText, emailEditText, passwordEditText, passwordRepeatEditText;
     private DBHelper registerDB;
 
     @Override
@@ -30,17 +30,17 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_main);
 
-        registerUser = (Button) findViewById(R.id.registerBtn);
-        registerUser.setOnClickListener(this);
+        registerUserBtn = (Button) findViewById(R.id.registerBtn);
+        registerUserBtn.setOnClickListener(this);
 
-        loginUser = (TextView) findViewById(R.id.login);
-        loginUser.setOnClickListener(this);
+        loginUserTextView = (TextView) findViewById(R.id.login);
+        loginUserTextView.setOnClickListener(this);
 
-        editTextName = (EditText) findViewById(R.id.registerName);
-        editTextSurname = (EditText) findViewById(R.id.registerSurname);
-        editTextEmail = (EditText) findViewById(R.id.registerEmail);
-        editTextPassword = (EditText) findViewById(R.id.registerPassword);
-        editTextPasswordRepeat = (EditText) findViewById(R.id.registerPasswordRepeat);
+        nameEditText = (EditText) findViewById(R.id.registerName);
+        surnameEditText = (EditText) findViewById(R.id.registerSurname);
+        emailEditText = (EditText) findViewById(R.id.registerEmail);
+        passwordEditText = (EditText) findViewById(R.id.registerPassword);
+        passwordRepeatEditText = (EditText) findViewById(R.id.registerPasswordRepeat);
 
         registerDB = new DBHelper(this);
 
@@ -65,63 +65,63 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
 
     private void registerUser() {
-        final String email = editTextEmail.getText().toString().trim();
-        final String name = editTextName.getText().toString().trim();
-        final String surname = editTextSurname.getText().toString().trim();
+        final String email = emailEditText.getText().toString().trim();
+        final String name = nameEditText.getText().toString().trim();
+        final String surname = surnameEditText.getText().toString().trim();
 
-        String password = editTextPassword.getText().toString().trim();
-        String passwordRepeat = editTextPasswordRepeat.getText().toString().trim();
+        String password = passwordEditText.getText().toString().trim();
+        String passwordRepeat = passwordRepeatEditText.getText().toString().trim();
 
         if (name.isEmpty()) {
-            editTextName.setError("Pole imię jest wymagane!");
-            editTextName.requestFocus();
+            nameEditText.setError("Pole imię jest wymagane!");
+            nameEditText.requestFocus();
             return;
         }
 
         if (surname.isEmpty()) {
-            editTextSurname.setError("Pole nazwisko jest wymagane!");
-            editTextSurname.requestFocus();
+            surnameEditText.setError("Pole nazwisko jest wymagane!");
+            surnameEditText.requestFocus();
             return;
         }
 
         if (email.isEmpty()) {
-            editTextEmail.setError("Pole email jest wymagane!");
-            editTextEmail.requestFocus();
+            emailEditText.setError("Pole email jest wymagane!");
+            emailEditText.requestFocus();
             return;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Wprowadź prawidłowy adres email!");
-            editTextEmail.requestFocus();
+            emailEditText.setError("Wprowadź prawidłowy adres email!");
+            emailEditText.requestFocus();
             return;
         }
 
         if (password.isEmpty()) {
-            editTextPassword.setError("Pole hasło jest wymagane!");
-            editTextPassword.requestFocus();
+            passwordEditText.setError("Pole hasło jest wymagane!");
+            passwordEditText.requestFocus();
             return;
         }
 
         if (passwordRepeat.isEmpty()) {
-            editTextPasswordRepeat.setError("Pole powtórz hasło jest wymagane!");
-            editTextPasswordRepeat.requestFocus();
+            passwordRepeatEditText.setError("Pole powtórz hasło jest wymagane!");
+            passwordRepeatEditText.requestFocus();
             return;
         }
 
         if (password.length() < 8) {
-            editTextPassword.setError("Hasło nie może być krótsze niż 8 znaków");
-            editTextPassword.requestFocus();
+            passwordEditText.setError("Hasło nie może być krótsze niż 8 znaków");
+            passwordEditText.requestFocus();
             return;
         }
 
         if (!passwordRepeat.equals(password)) {
-            editTextPasswordRepeat.setError("Hasła muszą być takie same!");
-            editTextPasswordRepeat.requestFocus();
+            passwordRepeatEditText.setError("Hasła muszą być takie same!");
+            passwordRepeatEditText.requestFocus();
             return;
         }
 
         User user = new User(name, surname, email, password);
-        Boolean usercheckResult = registerDB.checkuser(email);
+        Boolean usercheckResult = registerDB.checkUser(email);
         if(usercheckResult) {
             Toast.makeText(RegisterUser.this, "Użytkownik o podanym mailu już istnieje!", Toast.LENGTH_LONG).show();
         }

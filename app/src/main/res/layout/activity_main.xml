@@ -52,17 +52,17 @@
 
     <EditText
         android:id="@+id/registerName"
-        android:fontFamily="@font/poppins"
         android:layout_width="367dp"
         android:layout_height="48dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="22dp"
         android:layout_marginBottom="302dp"
         android:autofillHints=""
         android:background="@drawable/roundstyle"
         android:backgroundTint="#fff"
         android:ems="10"
+        android:fontFamily="@font/poppins"
         android:foregroundTint="#fff"
         android:hint="@string/podajImie"
         android:inputType="textPersonName"
@@ -71,23 +71,24 @@
         android:textColorHint="#757575"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeText"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/registerSurname"
-        android:fontFamily="@font/poppins"
         android:layout_width="367dp"
         android:layout_height="48dp"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="241dp"
         android:autofillHints=""
         android:background="@drawable/roundstyle"
         android:backgroundTint="#fff"
         android:ems="10"
+        android:fontFamily="@font/poppins"
         android:foregroundTint="#fff"
         android:hint="@string/podajNazwisko"
         android:inputType="textPersonName"
@@ -99,21 +100,21 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerName"
-        app:layout_constraintVertical_bias="0.060000002" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/registerEmail"
-        android:fontFamily="@font/poppins"
         android:layout_width="367dp"
         android:layout_height="48dp"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="190dp"
         android:autofillHints=""
         android:background="@drawable/roundstyle"
         android:backgroundTint="#fff"
         android:ems="10"
+        android:fontFamily="@font/poppins"
         android:foregroundTint="#fff"
         android:hint="@string/podaj_email"
         android:inputType="textEmailAddress"
@@ -125,11 +126,10 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerSurname"
-        app:layout_constraintVertical_bias="0.07999998" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/registerPassword"
-        android:fontFamily="@font/poppins"
         android:layout_width="366dp"
         android:layout_height="48dp"
         android:layout_marginStart="22dp"
@@ -140,6 +140,7 @@
         android:background="@drawable/roundstyle"
         android:backgroundTint="#fff"
         android:ems="10"
+        android:fontFamily="@font/poppins"
         android:foregroundTint="#fff"
         android:hint="@string/podajHaslo"
         android:inputType="textPassword"
@@ -151,7 +152,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerEmail"
-        app:layout_constraintVertical_bias="0.01999998" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/registerPasswordRepeat"
@@ -187,15 +188,16 @@
         android:layout_marginTop="45dp"
         android:layout_marginEnd="22dp"
         android:background='@drawable/roudstylebtn'
-        android:text="@string/zarejestrujSie"
         android:fontFamily="@font/poppins"
+        android:text="@string/zarejestrujSie"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textColorHighlight="#50C2C9"
         android:textStyle="bold"
         app:iconTint="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/haveAcc"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerPasswordRepeat"
         app:layout_constraintVertical_bias="0.0"
@@ -206,21 +208,23 @@
         android:layout_width="155dp"
         android:layout_height="25dp"
         android:layout_marginStart="101dp"
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="9dp"
         android:fontFamily="@font/poppins"
         android:text="@string/posiadaszJuzKonto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/login"
+        app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/registerPasswordRepeat"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/poppins"
@@ -230,8 +234,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/haveAcc"
-        app:layout_constraintTop_toBottomOf="@+id/registerBtn"
-        app:layout_constraintVertical_bias="0.327"
+        app:layout_constraintTop_toBottomOf="@+id/registerPasswordRepeat"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

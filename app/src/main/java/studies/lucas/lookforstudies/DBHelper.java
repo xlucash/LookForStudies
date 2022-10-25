@@ -60,7 +60,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public Boolean checkuser (String email) {
+    public Boolean checkUser(String email) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("select * from users where email = ?", new String[] {email});
 
@@ -118,6 +118,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return DatabaseUtils.stringForQuery(sqLiteDatabase, "select subject from examresults where subject like 'ADVANCED%' AND uid = ? LIMIT 1 OFFSET ?", new String[] {uid,offset});
     }
 
+    @SuppressLint("SetTextI18n")
     public static void checkIfDataExistBasicResults(DBHelper resultsDB, String uid, EditText mathPercentage, EditText polishPercentage, EditText englishPercentage) {
         if(!resultsDB.checkResultsInDB("MATH",uid)) {
             mathPercentage.setText("");

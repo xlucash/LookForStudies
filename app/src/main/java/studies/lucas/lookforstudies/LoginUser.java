@@ -18,7 +18,7 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
 
     private TextView register;
     private Button loginUserBtn;
-    private EditText editTextEmail, editTextPassword;
+    private EditText emailEditText, passwordEditText;
     private DBHelper loginDB;
 
 
@@ -36,8 +36,8 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
         loginUserBtn = (Button) findViewById(R.id.loginBtn);
         loginUserBtn.setOnClickListener(this);
 
-        editTextEmail = (EditText) findViewById(R.id.loginEmail);
-        editTextPassword = (EditText) findViewById(R.id.loginPassword);
+        emailEditText = (EditText) findViewById(R.id.loginEmail);
+        passwordEditText = (EditText) findViewById(R.id.loginPassword);
 
         loginDB = new DBHelper(this);
 
@@ -59,18 +59,18 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
 
 
     private void loginUser() {
-        String userEmail = editTextEmail.getText().toString().trim();
-        String userPassword = editTextPassword.getText().toString().trim();
+        String userEmail = emailEditText.getText().toString().trim();
+        String userPassword = passwordEditText.getText().toString().trim();
 
         if (userEmail.isEmpty()) {
-            editTextEmail.setError("Pole email jest wymagane!");
-            editTextEmail.requestFocus();
+            emailEditText.setError("Pole email jest wymagane!");
+            emailEditText.requestFocus();
             return;
         }
 
         if (userPassword.isEmpty()) {
-            editTextPassword.setError("Pole powtórz hasło jest wymagane!");
-            editTextPassword.requestFocus();
+            passwordEditText.setError("Pole powtórz hasło jest wymagane!");
+            passwordEditText.requestFocus();
             return;
         }
 

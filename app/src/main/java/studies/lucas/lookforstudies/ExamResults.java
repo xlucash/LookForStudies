@@ -17,7 +17,7 @@ import java.util.Objects;
 public class ExamResults extends AppCompatActivity implements View.OnClickListener{
 
     private ImageButton goBackBtn, confirmMathResultsBtn, confirmPolishResultsBtn, confirmEnglishResultsBtn, confirmAdvancedOneBtn, confirmAdvancedTwoBtn, confirmAdvancedThreeBtn;
-    private EditText mathPercentage, polishPercentage, englishPercentage, advancedOnePercentage, advancedTwoPercentage, advancedThreePercentage;
+    private EditText mathPercentageEditText, polishPercentageEditText, englishPercentageEditText, advancedOnePercentageEditText, advancedTwoPercentageEditText, advancedThreePercentageEditText;
     private AutoCompleteTextView advancedOneSubject, advancedTwoSubject, advancedThreeSubject;
     private String uid;
     private DBHelper resultsDB;
@@ -38,35 +38,35 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
         confirmMathResultsBtn = (ImageButton) findViewById(R.id.confirmMathBtn);
         confirmMathResultsBtn.setVisibility(View.INVISIBLE);
 
-        mathPercentage = (EditText) findViewById(R.id.editTextMathResult);
-        mathPercentage.setFocusable(false);
-        mathPercentage.setFocusableInTouchMode(false);
+        mathPercentageEditText = (EditText) findViewById(R.id.editTextMathResult);
+        mathPercentageEditText.setFocusable(false);
+        mathPercentageEditText.setFocusableInTouchMode(false);
 
         confirmPolishResultsBtn = (ImageButton) findViewById(R.id.confirmPolishBtn);
         confirmPolishResultsBtn.setVisibility(View.INVISIBLE);
 
-        polishPercentage = (EditText) findViewById(R.id.editTextPolishResult);
-        polishPercentage.setFocusable(false);
-        polishPercentage.setFocusableInTouchMode(false);
+        polishPercentageEditText = (EditText) findViewById(R.id.editTextPolishResult);
+        polishPercentageEditText.setFocusable(false);
+        polishPercentageEditText.setFocusableInTouchMode(false);
 
         confirmEnglishResultsBtn = (ImageButton) findViewById(R.id.confirmEnglishBtn);
         confirmEnglishResultsBtn.setVisibility(View.INVISIBLE);
 
-        englishPercentage = (EditText) findViewById(R.id.editTextEnglishResult);
-        englishPercentage.setFocusable(false);
-        englishPercentage.setFocusableInTouchMode(false);
+        englishPercentageEditText = (EditText) findViewById(R.id.editTextEnglishResult);
+        englishPercentageEditText.setFocusable(false);
+        englishPercentageEditText.setFocusableInTouchMode(false);
 
 
-        mathPercentage.setOnClickListener(this);
-        polishPercentage.setOnClickListener(this);
-        englishPercentage.setOnClickListener(this);
+        mathPercentageEditText.setOnClickListener(this);
+        polishPercentageEditText.setOnClickListener(this);
+        englishPercentageEditText.setOnClickListener(this);
 
         confirmAdvancedOneBtn = (ImageButton) findViewById(R.id.confirmAdvancedOneBtn);
         confirmAdvancedOneBtn.setVisibility(View.INVISIBLE);
 
-        advancedOnePercentage = (EditText) findViewById(R.id.editTextAdvancedResultOne);
-        advancedOnePercentage.setFocusable(false);
-        advancedOnePercentage.setFocusableInTouchMode(false);
+        advancedOnePercentageEditText = (EditText) findViewById(R.id.editTextAdvancedResultOne);
+        advancedOnePercentageEditText.setFocusable(false);
+        advancedOnePercentageEditText.setFocusableInTouchMode(false);
 
         advancedOneSubject = (AutoCompleteTextView) findViewById(R.id.autoCompleteAdvancedOne);
         advancedOneSubject.setAdapter(new ArrayAdapter<>(ExamResults.this, android.R.layout.simple_list_item_1, subjects));
@@ -75,9 +75,9 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
         confirmAdvancedTwoBtn = (ImageButton) findViewById(R.id.confirmAdvancedTwoBtn);
         confirmAdvancedTwoBtn.setVisibility(View.INVISIBLE);
 
-        advancedTwoPercentage = (EditText) findViewById(R.id.editTextAdvancedResultTwo);
-        advancedTwoPercentage.setFocusable(false);
-        advancedTwoPercentage.setFocusableInTouchMode(false);
+        advancedTwoPercentageEditText = (EditText) findViewById(R.id.editTextAdvancedResultTwo);
+        advancedTwoPercentageEditText.setFocusable(false);
+        advancedTwoPercentageEditText.setFocusableInTouchMode(false);
 
         advancedTwoSubject = (AutoCompleteTextView) findViewById(R.id.autoCompleteAdvancedTwo);
         advancedTwoSubject.setAdapter(new ArrayAdapter<>(ExamResults.this, android.R.layout.simple_list_item_1, subjects));
@@ -87,28 +87,28 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
         confirmAdvancedThreeBtn.setVisibility(View.INVISIBLE);
 
 
-        advancedThreePercentage = (EditText) findViewById(R.id.editTextAdvancedResultThree);
-        advancedThreePercentage.setFocusable(false);
-        advancedThreePercentage.setFocusableInTouchMode(false);
+        advancedThreePercentageEditText = (EditText) findViewById(R.id.editTextAdvancedResultThree);
+        advancedThreePercentageEditText.setFocusable(false);
+        advancedThreePercentageEditText.setFocusableInTouchMode(false);
 
         advancedThreeSubject = (AutoCompleteTextView) findViewById(R.id.autoCompleteAdvancedThree);
         advancedThreeSubject.setAdapter(new ArrayAdapter<>(ExamResults.this, android.R.layout.simple_list_item_1, subjects));
 
 
-        advancedOnePercentage.setOnClickListener(this);
-        advancedTwoPercentage.setOnClickListener(this);
-        advancedThreePercentage.setOnClickListener(this);
+        advancedOnePercentageEditText.setOnClickListener(this);
+        advancedTwoPercentageEditText.setOnClickListener(this);
+        advancedThreePercentageEditText.setOnClickListener(this);
 
 
         goBackBtn = (ImageButton) findViewById(R.id.goBackToProfile);
         goBackBtn.setOnClickListener(this);
 
-        DBHelper.checkIfDataExistBasicResults(resultsDB, uid, mathPercentage, polishPercentage, englishPercentage);
+        DBHelper.checkIfDataExistBasicResults(resultsDB, uid, mathPercentageEditText, polishPercentageEditText, englishPercentageEditText);
 
         if(!resultsDB.checkIfAdvancedResultsInDB(uid)) {
-            advancedOnePercentage.setText("");
-            advancedTwoPercentage.setText("");
-            advancedThreePercentage.setText("");
+            advancedOnePercentageEditText.setText("");
+            advancedTwoPercentageEditText.setText("");
+            advancedThreePercentageEditText.setText("");
         } else {
             String searchSubject;
             String convertedSubject;
@@ -116,14 +116,14 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
             searchSubject = resultsDB.getAdvancedSubject(uid, "0");
             convertedSubject = SubjectHelper.getSubjectReverse(searchSubject);
             advancedOneSubject.setText(convertedSubject);
-            advancedOnePercentage.setText(resultsDB.getPercentage(searchSubject, uid)+"%");
+            advancedOnePercentageEditText.setText(resultsDB.getPercentage(searchSubject, uid)+"%");
 
             // check if there is more than 1 advanced subject assigned to the uid
             if (resultsDB.checkCountAdvancedResultsInDB(uid)>1) {
                 searchSubject = resultsDB.getAdvancedSubject(uid, "1");
                 convertedSubject = SubjectHelper.getSubjectReverse(searchSubject);
                 advancedTwoSubject.setText(convertedSubject);
-                advancedTwoPercentage.setText(resultsDB.getPercentage(searchSubject, uid) + "%");
+                advancedTwoPercentageEditText.setText(resultsDB.getPercentage(searchSubject, uid) + "%");
             }
 
             // check if there is more than 2 advanced subjects assigned to the uid
@@ -131,7 +131,7 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
                 searchSubject = resultsDB.getAdvancedSubject(uid, "2");
                 convertedSubject = SubjectHelper.getSubjectReverse(searchSubject);
                 advancedThreeSubject.setText(convertedSubject);
-                advancedThreePercentage.setText(resultsDB.getPercentage(searchSubject, uid) + "%");
+                advancedThreePercentageEditText.setText(resultsDB.getPercentage(searchSubject, uid) + "%");
             }
         }
     }
@@ -146,19 +146,19 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.editTextMathResult:
                 confirmMathResultsBtn.setVisibility(View.VISIBLE);
-                mathPercentage.setFocusable(true);
-                mathPercentage.setFocusableInTouchMode(true);
+                mathPercentageEditText.setFocusable(true);
+                mathPercentageEditText.setFocusableInTouchMode(true);
 
                 confirmMathResultsBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String result = mathPercentage.getText().toString().trim();
-                        mathPercentage.setFocusable(false);
-                        mathPercentage.setFocusableInTouchMode(false);
+                        String result = mathPercentageEditText.getText().toString().trim();
+                        mathPercentageEditText.setFocusable(false);
+                        mathPercentageEditText.setFocusableInTouchMode(false);
                         if (!String.valueOf(result.charAt(result.length() - 1)).equals("%")) {
-                            mathPercentage.setText(result+"%");
+                            mathPercentageEditText.setText(result+"%");
                         } else {
-                            mathPercentage.setText(result);
+                            mathPercentageEditText.setText(result);
                         }
                         resultsDB.insertResultsData("MATH", result, uid);
 
@@ -168,19 +168,19 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.editTextPolishResult:
                 confirmPolishResultsBtn.setVisibility(View.VISIBLE);
-                polishPercentage.setFocusable(true);
-                polishPercentage.setFocusableInTouchMode(true);
+                polishPercentageEditText.setFocusable(true);
+                polishPercentageEditText.setFocusableInTouchMode(true);
 
                 confirmPolishResultsBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String result = polishPercentage.getText().toString().trim();
-                        polishPercentage.setFocusable(false);
-                        polishPercentage.setFocusableInTouchMode(false);
+                        String result = polishPercentageEditText.getText().toString().trim();
+                        polishPercentageEditText.setFocusable(false);
+                        polishPercentageEditText.setFocusableInTouchMode(false);
                         if (!String.valueOf(result.charAt(result.length() - 1)).equals("%")) {
-                            polishPercentage.setText(result+"%");
+                            polishPercentageEditText.setText(result+"%");
                         } else {
-                            polishPercentage.setText(result);
+                            polishPercentageEditText.setText(result);
                         }
                         resultsDB.insertResultsData("POLISH", result, uid);
 
@@ -190,19 +190,19 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.editTextEnglishResult:
                 confirmEnglishResultsBtn.setVisibility(View.VISIBLE);
-                englishPercentage.setFocusable(true);
-                englishPercentage.setFocusableInTouchMode(true);
+                englishPercentageEditText.setFocusable(true);
+                englishPercentageEditText.setFocusableInTouchMode(true);
 
                 confirmEnglishResultsBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String result = englishPercentage.getText().toString().trim();
-                        englishPercentage.setFocusable(false);
-                        englishPercentage.setFocusableInTouchMode(false);
+                        String result = englishPercentageEditText.getText().toString().trim();
+                        englishPercentageEditText.setFocusable(false);
+                        englishPercentageEditText.setFocusableInTouchMode(false);
                         if (!String.valueOf(result.charAt(result.length() - 1)).equals("%")) {
-                            englishPercentage.setText(result+"%");
+                            englishPercentageEditText.setText(result+"%");
                         } else {
-                            englishPercentage.setText(result);
+                            englishPercentageEditText.setText(result);
                         }
                         resultsDB.insertResultsData("ENGLISH", result, uid);
 
@@ -212,21 +212,21 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.editTextAdvancedResultOne:
                 confirmAdvancedOneBtn.setVisibility(View.VISIBLE);
-                advancedOnePercentage.setFocusable(true);
-                advancedOnePercentage.setFocusableInTouchMode(true);
+                advancedOnePercentageEditText.setFocusable(true);
+                advancedOnePercentageEditText.setFocusableInTouchMode(true);
 
                 confirmAdvancedOneBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         String userSubject = advancedOneSubject.getText().toString().trim();
                         String subject = SubjectHelper.getSubject(userSubject);
-                        String result = advancedOnePercentage.getText().toString().trim();
-                        advancedOnePercentage.setFocusable(false);
-                        advancedOnePercentage.setFocusableInTouchMode(false);
+                        String result = advancedOnePercentageEditText.getText().toString().trim();
+                        advancedOnePercentageEditText.setFocusable(false);
+                        advancedOnePercentageEditText.setFocusableInTouchMode(false);
                         if (!String.valueOf(result.charAt(result.length() - 1)).equals("%")) {
-                            advancedOnePercentage.setText(result+"%");
+                            advancedOnePercentageEditText.setText(result+"%");
                         } else {
-                            advancedOnePercentage.setText(result);
+                            advancedOnePercentageEditText.setText(result);
                         }
                         resultsDB.insertResultsData(subject, result, uid);
 
@@ -236,21 +236,21 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.editTextAdvancedResultTwo:
                 confirmAdvancedTwoBtn.setVisibility(View.VISIBLE);
-                advancedTwoPercentage.setFocusable(true);
-                advancedTwoPercentage.setFocusableInTouchMode(true);
+                advancedTwoPercentageEditText.setFocusable(true);
+                advancedTwoPercentageEditText.setFocusableInTouchMode(true);
 
                 confirmAdvancedTwoBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         String userSubject = advancedTwoSubject.getText().toString().trim();
                         String subject = SubjectHelper.getSubject(userSubject);
-                        String result = advancedTwoPercentage.getText().toString().trim();
-                        advancedTwoPercentage.setFocusable(false);
-                        advancedTwoPercentage.setFocusableInTouchMode(false);
+                        String result = advancedTwoPercentageEditText.getText().toString().trim();
+                        advancedTwoPercentageEditText.setFocusable(false);
+                        advancedTwoPercentageEditText.setFocusableInTouchMode(false);
                         if (!String.valueOf(result.charAt(result.length() - 1)).equals("%")) {
-                            advancedTwoPercentage.setText(result+"%");
+                            advancedTwoPercentageEditText.setText(result+"%");
                         } else {
-                            advancedTwoPercentage.setText(result);
+                            advancedTwoPercentageEditText.setText(result);
                         }
                         resultsDB.insertResultsData(subject, result, uid);
 
@@ -260,21 +260,21 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.editTextAdvancedResultThree:
                 confirmAdvancedThreeBtn.setVisibility(View.VISIBLE);
-                advancedThreePercentage.setFocusable(true);
-                advancedThreePercentage.setFocusableInTouchMode(true);
+                advancedThreePercentageEditText.setFocusable(true);
+                advancedThreePercentageEditText.setFocusableInTouchMode(true);
 
                 confirmAdvancedThreeBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         String userSubject = advancedThreeSubject.getText().toString().trim();
                         String subject = SubjectHelper.getSubject(userSubject);
-                        String result = advancedThreePercentage.getText().toString().trim();
-                        advancedThreePercentage.setFocusable(false);
-                        advancedThreePercentage.setFocusableInTouchMode(false);
+                        String result = advancedThreePercentageEditText.getText().toString().trim();
+                        advancedThreePercentageEditText.setFocusable(false);
+                        advancedThreePercentageEditText.setFocusableInTouchMode(false);
                         if (!String.valueOf(result.charAt(result.length() - 1)).equals("%")) {
-                            advancedThreePercentage.setText(result+"%");
+                            advancedThreePercentageEditText.setText(result+"%");
                         } else {
-                            advancedThreePercentage.setText(result);
+                            advancedThreePercentageEditText.setText(result);
                         }
                         resultsDB.insertResultsData(subject, result, uid);
 

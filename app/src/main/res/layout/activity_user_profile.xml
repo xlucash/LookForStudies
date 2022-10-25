@@ -148,8 +148,8 @@
         android:id="@+id/logOutTextView"
         android:layout_width="115dp"
         android:layout_height="29dp"
-        android:text="Wyloguj się"
         android:fontFamily="@font/poppins"
+        android:text="Wyloguj się"
         android:textColor="#4D7E64"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -158,6 +158,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/questionTextView"
         app:layout_constraintTop_toBottomOf="@+id/settingsBtn"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintVertical_bias="0.044" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

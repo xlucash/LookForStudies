@@ -14,19 +14,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ExamResults"
+            android:name=".activities.ExamResults"
             android:exported="false" />
         <activity
-            android:name=".UserProfile"
+            android:name=".activities.UserProfile"
             android:exported="false" />
         <activity
-            android:name=".UserHome"
+            android:name=".activities.UserHome"
             android:exported="false" />
         <activity
-            android:name=".RegisterUser"
+            android:name=".activities.RegisterUser"
             android:exported="false" />
         <activity
-            android:name=".LoginUser"
+            android:name=".activities.LoginUser"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

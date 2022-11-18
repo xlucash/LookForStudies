@@ -1,4 +1,4 @@
-package studies.lucas.lookforstudies;
+package studies.lucas.lookforstudies.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import java.util.Objects;
+
+import studies.lucas.lookforstudies.R;
+import studies.lucas.lookforstudies.database.DBHelper;
+import studies.lucas.lookforstudies.database.SubjectHelper;
 
 public class ExamResults extends AppCompatActivity implements View.OnClickListener{
 
@@ -145,144 +149,72 @@ public class ExamResults extends AppCompatActivity implements View.OnClickListen
                 startActivity(intent);
                 break;
             case R.id.editTextMathResult:
-                confirmMathResultsBtn.setVisibility(View.VISIBLE);
-                mathPercentageEditText.setFocusable(true);
-                mathPercentageEditText.setFocusableInTouchMode(true);
-
-                confirmMathResultsBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String result = mathPercentageEditText.getText().toString().trim();
-                        mathPercentageEditText.setFocusable(false);
-                        mathPercentageEditText.setFocusableInTouchMode(false);
-                        if (!String.valueOf(result.charAt(result.length() - 1)).equals("%")) {
-                            mathPercentageEditText.setText(result+"%");
-                        } else {
-                            mathPercentageEditText.setText(result);
-                        }
-                        resultsDB.insertResultsData("MATH", result, uid);
-
-                        confirmMathResultsBtn.setVisibility(View.INVISIBLE);
-                    }
-                });
+                settingValueOfBasicResult(confirmMathResultsBtn, mathPercentageEditText, "MATH");
                 break;
             case R.id.editTextPolishResult:
-                confirmPolishResultsBtn.setVisibility(View.VISIBLE);
-                polishPercentageEditText.setFocusable(true);
-                polishPercentageEditText.setFocusableInTouchMode(true);
-
-                confirmPolishResultsBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String result = polishPercentageEditText.getText().toString().trim();
-                        polishPercentageEditText.setFocusable(false);
-                        polishPercentageEditText.setFocusableInTouchMode(false);
-                        if (!String.valueOf(result.charAt(result.length() - 1)).equals("%")) {
-                            polishPercentageEditText.setText(result+"%");
-                        } else {
-                            polishPercentageEditText.setText(result);
-                        }
-                        resultsDB.insertResultsData("POLISH", result, uid);
-
-                        confirmPolishResultsBtn.setVisibility(View.INVISIBLE);
-                    }
-                });
+                settingValueOfBasicResult(confirmPolishResultsBtn, polishPercentageEditText, "POLISH");
                 break;
             case R.id.editTextEnglishResult:
-                confirmEnglishResultsBtn.setVisibility(View.VISIBLE);
-                englishPercentageEditText.setFocusable(true);
-                englishPercentageEditText.setFocusableInTouchMode(true);
-
-                confirmEnglishResultsBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String result = englishPercentageEditText.getText().toString().trim();
-                        englishPercentageEditText.setFocusable(false);
-                        englishPercentageEditText.setFocusableInTouchMode(false);
-                        if (!String.valueOf(result.charAt(result.length() - 1)).equals("%")) {
-                            englishPercentageEditText.setText(result+"%");
-                        } else {
-                            englishPercentageEditText.setText(result);
-                        }
-                        resultsDB.insertResultsData("ENGLISH", result, uid);
-
-                        confirmEnglishResultsBtn.setVisibility(View.INVISIBLE);
-                    }
-                });
+                settingValueOfBasicResult(confirmEnglishResultsBtn, englishPercentageEditText, "ENGLISH");
                 break;
             case R.id.editTextAdvancedResultOne:
-                confirmAdvancedOneBtn.setVisibility(View.VISIBLE);
-                advancedOnePercentageEditText.setFocusable(true);
-                advancedOnePercentageEditText.setFocusableInTouchMode(true);
-
-                confirmAdvancedOneBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String userSubject = advancedOneSubject.getText().toString().trim();
-                        String subject = SubjectHelper.getSubject(userSubject);
-                        String result = advancedOnePercentageEditText.getText().toString().trim();
-                        advancedOnePercentageEditText.setFocusable(false);
-                        advancedOnePercentageEditText.setFocusableInTouchMode(false);
-                        if (!String.valueOf(result.charAt(result.length() - 1)).equals("%")) {
-                            advancedOnePercentageEditText.setText(result+"%");
-                        } else {
-                            advancedOnePercentageEditText.setText(result);
-                        }
-                        resultsDB.insertResultsData(subject, result, uid);
-
-                        confirmAdvancedOneBtn.setVisibility(View.INVISIBLE);
-                    }
-                });
+                settingValueOfAdvancedResultField(confirmAdvancedOneBtn, advancedOnePercentageEditText, advancedOneSubject);
                 break;
             case R.id.editTextAdvancedResultTwo:
-                confirmAdvancedTwoBtn.setVisibility(View.VISIBLE);
-                advancedTwoPercentageEditText.setFocusable(true);
-                advancedTwoPercentageEditText.setFocusableInTouchMode(true);
-
-                confirmAdvancedTwoBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String userSubject = advancedTwoSubject.getText().toString().trim();
-                        String subject = SubjectHelper.getSubject(userSubject);
-                        String result = advancedTwoPercentageEditText.getText().toString().trim();
-                        advancedTwoPercentageEditText.setFocusable(false);
-                        advancedTwoPercentageEditText.setFocusableInTouchMode(false);
-                        if (!String.valueOf(result.charAt(result.length() - 1)).equals("%")) {
-                            advancedTwoPercentageEditText.setText(result+"%");
-                        } else {
-                            advancedTwoPercentageEditText.setText(result);
-                        }
-                        resultsDB.insertResultsData(subject, result, uid);
-
-                        confirmAdvancedTwoBtn.setVisibility(View.INVISIBLE);
-                    }
-                });
+                settingValueOfAdvancedResultField(confirmAdvancedTwoBtn, advancedTwoPercentageEditText, advancedTwoSubject);
                 break;
             case R.id.editTextAdvancedResultThree:
-                confirmAdvancedThreeBtn.setVisibility(View.VISIBLE);
-                advancedThreePercentageEditText.setFocusable(true);
-                advancedThreePercentageEditText.setFocusableInTouchMode(true);
-
-                confirmAdvancedThreeBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String userSubject = advancedThreeSubject.getText().toString().trim();
-                        String subject = SubjectHelper.getSubject(userSubject);
-                        String result = advancedThreePercentageEditText.getText().toString().trim();
-                        advancedThreePercentageEditText.setFocusable(false);
-                        advancedThreePercentageEditText.setFocusableInTouchMode(false);
-                        if (!String.valueOf(result.charAt(result.length() - 1)).equals("%")) {
-                            advancedThreePercentageEditText.setText(result+"%");
-                        } else {
-                            advancedThreePercentageEditText.setText(result);
-                        }
-                        resultsDB.insertResultsData(subject, result, uid);
-
-                        confirmAdvancedThreeBtn.setVisibility(View.INVISIBLE);
-                    }
-                });
+                settingValueOfAdvancedResultField(confirmAdvancedThreeBtn, advancedThreePercentageEditText, advancedThreeSubject);
                 break;
         }
+    }
+
+    private void settingValueOfBasicResult(ImageButton confirmResultsBtn, EditText percentageEditText, String subject) {
+        confirmResultsBtn.setVisibility(View.VISIBLE);
+        percentageEditText.setFocusable(true);
+        percentageEditText.setFocusableInTouchMode(true);
+
+        confirmResultsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String result = percentageEditText.getText().toString().trim();
+                percentageEditText.setFocusable(false);
+                percentageEditText.setFocusableInTouchMode(false);
+                if (!String.valueOf(result.charAt(result.length() - 1)).equals("%")) {
+                    percentageEditText.setText(result+"%");
+                } else {
+                    percentageEditText.setText(result);
+                }
+                resultsDB.insertResultsData(subject, result, uid);
+
+                confirmResultsBtn.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
+
+    private void settingValueOfAdvancedResultField(ImageButton confirmAdvancedBtn, EditText advancedPercentageEditText, AutoCompleteTextView advancedSubject) {
+        confirmAdvancedBtn.setVisibility(View.VISIBLE);
+        advancedPercentageEditText.setFocusable(true);
+        advancedPercentageEditText.setFocusableInTouchMode(true);
+
+        confirmAdvancedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String userSubject = advancedSubject.getText().toString().trim();
+                String subject = SubjectHelper.getSubject(userSubject);
+                String result = advancedPercentageEditText.getText().toString().trim();
+                advancedPercentageEditText.setFocusable(false);
+                advancedPercentageEditText.setFocusableInTouchMode(false);
+                if (!String.valueOf(result.charAt(result.length() - 1)).equals("%")) {
+                    advancedPercentageEditText.setText(result+"%");
+                } else {
+                    advancedPercentageEditText.setText(result);
+                }
+                resultsDB.insertResultsData(subject, result, uid);
+
+                confirmAdvancedBtn.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
 }

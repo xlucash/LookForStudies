@@ -1,4 +1,4 @@
-package studies.lucas.lookforstudies;
+package studies.lucas.lookforstudies.database;
 
 public class SubjectHelper {
     // "Matematyka","Jezyk polski","Jezyk angielski","Jezyk niemiecki","Informatyka","Fizyka","Biologia","Chemia","Geografia","Historia"

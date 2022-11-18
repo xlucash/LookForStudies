@@ -1,4 +1,4 @@
-package studies.lucas.lookforstudies;
+package studies.lucas.lookforstudies.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +15,10 @@ import android.widget.Toast;
 
 
 import java.util.Objects;
+
+import studies.lucas.lookforstudies.R;
+import studies.lucas.lookforstudies.database.DBHelper;
+import studies.lucas.lookforstudies.constructor.User;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener {
 

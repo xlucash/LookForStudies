@@ -1,4 +1,4 @@
-package studies.lucas.lookforstudies;
+package studies.lucas.lookforstudies.database;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -8,6 +8,8 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.EditText;
+
+import studies.lucas.lookforstudies.constructor.User;
 
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {

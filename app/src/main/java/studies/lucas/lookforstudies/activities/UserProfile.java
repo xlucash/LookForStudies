@@ -1,4 +1,4 @@
-package studies.lucas.lookforstudies;
+package studies.lucas.lookforstudies.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Objects;
+
+import studies.lucas.lookforstudies.R;
+import studies.lucas.lookforstudies.database.DBHelper;
 
 public class UserProfile extends AppCompatActivity {
 

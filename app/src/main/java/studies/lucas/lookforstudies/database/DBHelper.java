@@ -12,20 +12,34 @@ import android.widget.EditText;
 import studies.lucas.lookforstudies.constructor.User;
 
 public class DBHelper extends SQLiteOpenHelper {
+    public static final String CREATE_TABLE_USERS = "create Table users(uid INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT, surname TEXT, email TEXT, password TEXT)";
+    public static final String CREATE_TABLE_EXAMRESULTS = "create Table examresults(id INTEGER PRIMARY KEY AUTOINCREMENT, subject TEXT,result TEXT,uid INTEGER)";
+    public static final String DROP_TABLE_IF_EXISTS_USERS = "drop Table if exists users";
+    public static final String DROP_TABLE_IF_EXISTS_EXAMRESULTS = "drop Table if exists examresults";
+    public static final String SELECT_RESULT_FROM_EXAMRESULTS_WHERE_SUBJECT_AND_UID = "select result from examresults where subject = ? AND uid = ?";
+    public static final String SELECT_FROM_USERS_WHERE_EMAIL = "select * from users where email = ?";
+    public static final String SELECT_FROM_USERS_WHERE_EMAIL_AND_PASSWORD = "select * from users where email = ? and password = ?";
+    public static final String SELECT_UID_FROM_USERS_WHERE_EMAIL = "select uid from users where email = ?";
+    public static final String SELECT_NAME_FROM_USERS_WHERE_UID = "select name from users where uid = ?";
+    public static final String SELECT_SURNAME_FROM_USERS_WHERE_UID = "select surname from users where uid = ?";
+    public static final String SELECT_FROM_EXAMRESULTS_WHERE_SUBJECT_AND_UID = "select * from examresults where subject = ? and uid = ?";
+    public static final String SELECT_FROM_EXAMRESULTS_WHERE_SUBJECT_LIKE_ADVANCED_AND_UID = "select * from examresults where subject like 'ADVANCED%' and uid = ?";
+    public static final String SELECT_SUBJECT_FROM_EXAMRESULTS_WHERE_SUBJECT_ADVANCED = "select subject from examresults where subject like 'ADVANCED%' AND uid = ? LIMIT 1 OFFSET ?";
+
     public DBHelper(Context context) {
         super(context, "LookForStudies.db",null,1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create Table users(uid INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT, surname TEXT, email TEXT, password TEXT)");
-        sqLiteDatabase.execSQL("create Table examresults(id INTEGER PRIMARY KEY AUTOINCREMENT, subject TEXT,result TEXT,uid INTEGER)");
+        sqLiteDatabase.execSQL(CREATE_TABLE_USERS);
+        sqLiteDatabase.execSQL(CREATE_TABLE_EXAMRESULTS);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("drop Table if exists users");
-        sqLiteDatabase.execSQL("drop Table if exists examresults");
+        sqLiteDatabase.execSQL(DROP_TABLE_IF_EXISTS_USERS);
+        sqLiteDatabase.execSQL(DROP_TABLE_IF_EXISTS_EXAMRESULTS);
     }
 
 
@@ -52,7 +66,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("result", examResult);
         contentValues.put("uid", Integer.valueOf(uid));
 
-        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("select result from examresults where subject = ? AND uid = ?", new String[]{subject, uid});
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery(SELECT_RESULT_FROM_EXAMRESULTS_WHERE_SUBJECT_AND_UID, new String[]{subject, uid});
         if (cursor.getCount() > 0) {
             sqLiteDatabase.update("examresults",contentValues,"uid = ? and subject = ?",new String[] {uid, subject});
         } else {
@@ -64,7 +78,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Boolean checkUser(String email) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("select * from users where email = ?", new String[] {email});
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery(SELECT_FROM_USERS_WHERE_EMAIL, new String[] {email});
 
         return cursor.getCount() > 0;
 
@@ -72,52 +86,52 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Boolean checkEmailPassword (String email, String password) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("select * from users where email = ? and password = ?", new String[] {email, password});
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery(SELECT_FROM_USERS_WHERE_EMAIL_AND_PASSWORD, new String[] {email, password});
 
         return cursor.getCount() > 0;
     }
 
     public int getUid (String email) {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        return (int) DatabaseUtils.longForQuery(sqLiteDatabase, "select uid from users where email = ?", new String[] {email});
+        return (int) DatabaseUtils.longForQuery(sqLiteDatabase, SELECT_UID_FROM_USERS_WHERE_EMAIL, new String[] {email});
     }
 
     public String getName (String uid) {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        return DatabaseUtils.stringForQuery(sqLiteDatabase, "select name from users where uid = ?", new String[] {uid});
+        return DatabaseUtils.stringForQuery(sqLiteDatabase, SELECT_NAME_FROM_USERS_WHERE_UID, new String[] {uid});
     }
 
     public String getSurname (String uid) {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        return DatabaseUtils.stringForQuery(sqLiteDatabase, "select surname from users where uid = ?", new String[] {uid});
+        return DatabaseUtils.stringForQuery(sqLiteDatabase, SELECT_SURNAME_FROM_USERS_WHERE_UID, new String[] {uid});
     }
 
     public Boolean checkResultsInDB (String subject, String uid) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("select * from examresults where subject = ? and uid = ?", new String[] {subject, uid});
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery(SELECT_FROM_EXAMRESULTS_WHERE_SUBJECT_AND_UID, new String[] {subject, uid});
         return cursor.getCount() > 0;
     }
 
     public Boolean checkIfAdvancedResultsInDB (String uid) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("select * from examresults where subject like 'ADVANCED%' and uid = ?", new String[] {uid});
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery(SELECT_FROM_EXAMRESULTS_WHERE_SUBJECT_LIKE_ADVANCED_AND_UID, new String[] {uid});
         return cursor.getCount() > 0;
     }
 
     public int checkCountAdvancedResultsInDB (String uid) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("select * from examresults where subject like 'ADVANCED%' and uid = ?", new String[] {uid});
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery(SELECT_FROM_EXAMRESULTS_WHERE_SUBJECT_LIKE_ADVANCED_AND_UID, new String[] {uid});
         return cursor.getCount();
     }
 
     public String getPercentage (String subject, String uid) {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        return DatabaseUtils.stringForQuery(sqLiteDatabase, "select result from examresults where subject = ? AND uid = ?", new String[] {subject, uid});
+        return DatabaseUtils.stringForQuery(sqLiteDatabase, SELECT_RESULT_FROM_EXAMRESULTS_WHERE_SUBJECT_AND_UID, new String[] {subject, uid});
     }
 
     public String getAdvancedSubject (String uid, String offset) {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        return DatabaseUtils.stringForQuery(sqLiteDatabase, "select subject from examresults where subject like 'ADVANCED%' AND uid = ? LIMIT 1 OFFSET ?", new String[] {uid,offset});
+        return DatabaseUtils.stringForQuery(sqLiteDatabase, SELECT_SUBJECT_FROM_EXAMRESULTS_WHERE_SUBJECT_ADVANCED, new String[] {uid,offset});
     }
 
     @SuppressLint("SetTextI18n")
